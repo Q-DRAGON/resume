@@ -16,15 +16,17 @@
             <div v-for="(subitem, i) in resume[item.field]">
               <div v-for="(value, key) in subitem">
                 <label for="">{{ key }}</label>
-                <div class="doubleSelect-wrapper" v-if="key === 'time'">
+                <div class="doubleSelect-wrapper" v-if="key === '时长'">
                   <select class='doubleSelect' @change="handleChangeFromTime($event.target, `${item.field}.${i}.${key}.begin`)">
-                    <option v-for="item in yearOptions" :value="item.value">{{item.value}}</option>
+                    <option disabled selected>请选择起始时间</option>
+                    <option v-for="item in yearOptions">{{item.value}}</option>
                   </select>
                   <select class='doubleSelect' @change="handleChangeFromTime($event.target, `${item.field}.${i}.${key}.end`)">
+                    <option disabled selected>请选择终止时间</option>
                     <option v-for="item in yearOptions">{{item.value}}</option>
                   </select>
                 </div>
-                <input v-else-if="key !== 'content'" type="text" :value="value" @input="changeResumeField(`${item.field}.${i}.${key}`, $event.target.value)">
+                <input v-else-if="key !== '详情'" type="text" :value="value" @input="changeResumeField(`${item.field}.${i}.${key}`, $event.target.value)">
                 <textarea v-else rows="3" cols="20" @input="changeResumeField(`${item.field}.${i}.${key}`, $event.target.value)"></textarea>
               </div>
             </div>
@@ -37,14 +39,14 @@
           <div v-else-if="resume[item.field] instanceof Object">
             <div v-for="(value, key) in resume[item.field]">
               <label>{{ key }}</label>
-                <div class="block" v-if="key === 'city'">
+                <div class="block" v-if="key === '居住地'">
                     <el-cascader
                     :options="cityOptions"
                     v-model="selectedOptions"
                     @change="handleChange">
                     </el-cascader>
                 </div>
-                <div class="doubleOptions-wrapper" v-if="key === 'birthday'">
+                <div class="doubleOptions-wrapper" v-if="key === '生日'">
                   <el-select v-model="value5" placeholder="请选择年份" @change="handleChangeFromBirthday">
                     <el-option
                     v-for="item in yearOptions"
@@ -67,7 +69,7 @@
                       </el-option>
                   </el-select>
                 </div>
-                <input v-else-if="key !== 'city'" type="text" :value="value" @input="changeResumeField(`${item.field}.${key}`, $event.target.value)">
+                <input v-else-if="key != '居住地'" type="text" :value="value" @input="changeResumeField(`${item.field}.${key}`, $event.target.value)">
             </div>
           </div>
         </li>
@@ -95,21 +97,21 @@ export default {
     }
   },
   created() {
-    axios.get('/static/cityData.json')
+    axios.get('/api/city')
       .then((response) => {
         this.cityOptions = response.data
       })
       .catch((error) => {
         console.log(error)
       })
-    axios.get('/static/dateData.json')
+    axios.get('/api/date')
       .then((response) => {
         this.monthOptions = response.data
       })
       .catch((error) => {
         console.log(error)
       })
-    axios.get('/static/yearData.json')
+    axios.get('/api/year')
       .then((response) => {
         this.yearOptions = response.data
       })
@@ -143,14 +145,14 @@ export default {
       },
       handleChange(value) {
         let stringValue = value.join('')
-        this.changeResumeField('profile.city', stringValue)
+        this.changeResumeField('profile.居住地', stringValue)
       },
       handleChangeFromBirthday(value) {
         let stringValue = String(value)
         if(stringValue.length === 4) {
-          this.changeResumeField('profile.birthday.year', stringValue)
+          this.changeResumeField('profile.生日.year', stringValue)
         } else {
-          this.changeResumeField('profile.birthday.month', stringValue)
+          this.changeResumeField('profile.生日.month', stringValue)
         }
       },
       handleChangeFromTime(e, path) {

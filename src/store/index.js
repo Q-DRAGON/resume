@@ -20,22 +20,22 @@ export default new Vuex.Store({
             { field: 'contacts', icon: 'phone' },
           ],
           profile: {
-            name: '方某某',
-            city: '大城市铁岭',
-            title: '首席装逼师',
-            birthday: {
+            姓名: '王尔德',
+            居住地: '大城市铁岭',
+            职位: '前端工程师',
+            生日: {
                 year: '1990',
                 month: '1',
             },
           },
           workHistory: [
               {
-                  company: '鸡飞狗跳公司',
-                  time: {
+                  公司: '极点一刻网络科技有限公司',
+                  时长: {
                     begin: '1990',
                     end: '2003',
                   },
-                  content: `公司总部设在XXXX区，先后在北京、上海成立分公司。专注于移动XXX领域，主打产品XXXXX，它将资讯、报纸、杂志、图片、微信等众多内容，按照用户意愿聚合到一起，实现深度个性化 定制。
+                  详情: `公司总部设在深圳。专注于互联网通讯领域，主打产品XXXXX，它将资讯、报纸、杂志、图片、微信等众多内容，按照用户意愿聚合到一起，实现深度个性化 定制。
                   我的主要工作如下:
                   1. 完成既定产品需求。
                   2. 修复 bug。`
@@ -43,22 +43,27 @@ export default new Vuex.Store({
           ],
           education: [
             {
-            school: '韩琛古惑仔高中',
-            time: {
+            学校: '清华大学',
+            时长: {
               begin: '1990',
               end: '2003',
             },
-            content: '文字'
+            详情: '本科毕业生'
             },
           ],
           projects: [
-            { name: 'project A', content: '文字' },
+            { 项目名称: 'todoList', 详情: `
+            1. 完全独立可剥离的UI，便于风格定制
+            2. 清晰的开发模式，做APP从未这么简单
+            3. 井然有序的代码组织，页面再多也不乱
+            4. 熟悉的模块化开发体验，用了就回不去了
+            5. 丰富的示例，助你快速上手`},
           ],
           awards: [
-            { name: '再来十瓶', content: '连续十次获得「再来一瓶」奖励' },
+            { 奖项: '首届“解放号杯”程序员大赛一等奖', 详情: '备忘小贴士荣获最佳' },
           ],
           contacts: [
-            { contact: 'phone', number: '13812345678' },
+            { 联系方式: 'phone', 联系详情: '13812345678' },
           ],
         },
     },
@@ -74,10 +79,11 @@ export default new Vuex.Store({
         },
         switchTab(state, payload) {
             state.selected = payload
+            // localStorage.setItem('state', JSON.stringify(state))
         },
         updateResume(state, {path, value}) {
             objectPath.set(state.resume, path, value)
-            let value1 = objectPath.get(state.resume, path)
+            // localStorage.setItem('state', JSON.stringify(state))
         },
         addResumeData(state, payload) {
             var newInput = {}
@@ -94,13 +100,11 @@ export default new Vuex.Store({
               console.log('i', i, 'newInput', newInput)
             }
             objectPath.push(state.resume, payload.filed, newInput)
-        }
+        },
         // 初始化
         // initState(state, payload) {
         //     // 从 payload(localStorage 里的数据) 复制到 state
-        //     console.log(JSON.stringify(state.resume.profile))
-        //     Object.assign(state, payload)
-        //     console.log(JSON.stringify(state.resume.profile))
+        //     // Object.assign(state, payload)
         // },
     }
 })

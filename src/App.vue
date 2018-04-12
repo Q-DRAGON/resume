@@ -43,6 +43,10 @@ export default {
 </script>
 
 <style scoped lang="scss">
+  @font-face {
+      font-family: "STHeitiLight";
+      src: url("../static/font/STHeiti-Light.ttf");
+  }
   svg.icon {
     height: 1em;
     width: 1em;
@@ -54,6 +58,7 @@ export default {
     display: flex;
     flex-direction: column;
     height: 100vh;
+    font-family: STHeitiLight, "PingFang SC", sans-serif;
      main {
       min-width: 1024px;
       max-width: 96%;

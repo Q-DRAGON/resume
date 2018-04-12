@@ -9,6 +9,9 @@ const CopyWebpackPlugin = require('copy-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin')
 const portfinder = require('portfinder')
+const cityData = require('../static/cityData.json')
+const dateData = require('../static/dateData.json')
+const yearData = require('../static/yearData.json')
 
 const HOST = process.env.HOST
 const PORT = process.env.PORT && Number(process.env.PORT)
@@ -42,6 +45,17 @@ const devWebpackConfig = merge(baseWebpackConfig, {
     quiet: true, // necessary for FriendlyErrorsPlugin
     watchOptions: {
       poll: config.dev.poll,
+    },
+    before(app) {
+      app.get('/api/city', (req, res) => {
+        res.json(cityData)
+      }),
+      app.get('/api/date', (req, res) => {
+        res.json(dateData)
+      }),
+      app.get('/api/year', (req, res) => {
+        res.json(yearData)
+      })
     }
   },
   plugins: [
