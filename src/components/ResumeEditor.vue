@@ -104,24 +104,27 @@ export default {
     const yearUrl = debug ? '/api/year' : 'https://raw.githubusercontent.com/Q-DRAGON/resume/master/dist/static/yearData.json'
     axios.get(cityUrl)
       .then((response) => {
+        console.log(cityUrl)
         this.cityOptions = response.data
       })
       .catch((error) => {
-        console.log(error)
+        console.log('error', error)
       })
     axios.get(dateUrl)
       .then((response) => {
+        console.log(dateUrl)
         this.monthOptions = response.data
       })
       .catch((error) => {
-        console.log(error)
+        console.log('error', error)
       })
     axios.get(yearUrl)
       .then((response) => {
+        console.log(yearUrl)
         this.yearOptions = response.data
       })
       .catch((error) => {
-        console.log(error)
+        console.log('error', error)
       })
   },
   computed: {
