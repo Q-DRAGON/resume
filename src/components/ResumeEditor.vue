@@ -81,6 +81,8 @@
 <script>
 import axios from 'axios'
 
+const debug = process.env.NODE_ENV !== 'production';
+
 export default {
   name: 'ResumeEditor',
   data() {
@@ -97,21 +99,24 @@ export default {
     }
   },
   created() {
-    axios.get('/api/city')
+    const cityUrl = debug ? '/api/city' : 'https://raw.githubusercontent.com/Q-DRAGON/resume/master/dist/static/cityData.json'
+    const dateUrl = debug ? '/api/date' : 'https://raw.githubusercontent.com/Q-DRAGON/resume/master/dist/static/dateData.json'
+    const yearUrl = debug ? '/api/year' : 'https://raw.githubusercontent.com/Q-DRAGON/resume/master/dist/static/yearData.json'
+    axios.get(cityUrl)
       .then((response) => {
         this.cityOptions = response.data
       })
       .catch((error) => {
         console.log(error)
       })
-    axios.get('/api/date')
+    axios.get(dateUrl)
       .then((response) => {
         this.monthOptions = response.data
       })
       .catch((error) => {
         console.log(error)
       })
-    axios.get('/api/year')
+    axios.get(yearUrl)
       .then((response) => {
         this.yearOptions = response.data
       })
