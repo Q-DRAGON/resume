@@ -97,27 +97,27 @@ export default {
     }
   },
   created() {
-    axios.get('/api/city')
-      .then((response) => {
-        this.cityOptions = response.data
-      })
-      .catch((error) => {
-        console.log(error)
-      })
-    axios.get('/api/date')
-      .then((response) => {
-        this.monthOptions = response.data
-      })
-      .catch((error) => {
-        console.log(error)
-      })
-    axios.get('/api/year')
-      .then((response) => {
-        this.yearOptions = response.data
-      })
-      .catch((error) => {
-        console.log(error)
-      })
+    // axios.get('/api/city')
+    //   .then((response) => {
+    //     this.cityOptions = response.data
+    //   })
+    //   .catch((error) => {
+    //     console.log(error)
+    //   })
+    // axios.get('/api/date')
+    //   .then((response) => {
+    //     this.monthOptions = response.data
+    //   })
+    //   .catch((error) => {
+    //     console.log(error)
+    //   })
+    // axios.get('/api/year')
+    //   .then((response) => {
+    //     this.yearOptions = response.data
+    //   })
+    //   .catch((error) => {
+    //     console.log(error)
+    //   })
   },
   computed: {
     selected: {
