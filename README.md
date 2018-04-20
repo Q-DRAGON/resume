@@ -1,27 +1,8 @@
-# diy-resumer
-
-> A Vue.js project
-
-## Build Setup
-
-``` bash
-# install dependencies
-npm install
-
-# serve with hot reload at localhost:8080
-npm run dev
-
-# build for production with minification
-npm run build
-
-# build for production and view the bundle analyzer report
-npm run build --report
-
-# run unit tests
-npm run unit
-
-# run all tests
-npm test
-```
-
-For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
+# vue-resume
+傻瓜式简历模板生成器
+## 界面
+![resume 使用界面](https://raw.githubusercontent.com/Q-DRAGON/resume/master/UI-sreenshot/%E7%94%9F%E6%88%90%E5%99%A8.PNG)
+## 介绍
+前端基于 vue 实现, 点预览后, 浏览器打印为 PDF 就是一张漂亮的简历了
+## 预览
+[DEMO](https://q-dragon.github.io/resume/dist/index.html)
